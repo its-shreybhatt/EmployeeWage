@@ -9,7 +9,7 @@ public class EmployeeWage {
         int attendance = value1.nextInt(2);
         if (attendance == 0) {
             System.out.println("present");
-        }
-        else System.out.println("absent");
+            System.out.println("Daily employee wage = " + 20 * 8 + " rupees");
+        } else System.out.println("absent .. No wage");
     }
 }
