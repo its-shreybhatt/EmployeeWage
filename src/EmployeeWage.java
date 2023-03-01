@@ -1,32 +1,34 @@
 import java.util.Random;
 
 public class EmployeeWage {
+    public static final int IS_PART_TIME = 1;
+    public static final int IS_FULL_TIME = 2;
+    public static final int EMP_RATE_PER_HOUR = 20;
+    public static final int NO_OF_WORKING_DAYS = 20;
+    public static final int MAX_HOURS_IN_MONTH = 100;
+
     public static void main(String[] args) {
-        System.out.println("welcome to employee wage computation program !");
-        int hours = 0;
-        int present = 0;
-        int fulltime = 0;
-        int parttime = 0;
-        while (hours < 100 && present < 20) {
-
-            Random value2 = new Random();
-            int time = value2.nextInt(2);
-            switch (time) {
-                case 0:
-                    parttime = parttime + 4;
+//        Variables
+        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+//        Computation
+        while (totalEmpHrs <= MAX_HOURS_IN_MONTH &&
+                totalWorkingDays < NO_OF_WORKING_DAYS) {
+            totalWorkingDays++;
+            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+            switch (empCheck) {
+                case IS_PART_TIME:
+                    empHrs = 4;
                     break;
-                case 1:
-                    fulltime = fulltime + 8;
+                case IS_FULL_TIME:
+                    empHrs = 8;
                     break;
+                default:
+                    empHrs = 0;
             }
-            present += 1;
-            hours = parttime + fulltime;
+            totalEmpHrs += empHrs;
+            System.out.println("Day: " + totalWorkingDays + " Emp Hrs: " + empHrs);
         }
-
-        System.out.println("hours = " + hours);
-        System.out.println("Working days = " + present);
-
-//      Wage per hour = 20    Parttime for 4 hours = 80    Fulltime for 8 hours = 160
-        System.out.println("Total salary = " + hours * 20 + " rupees");
+        int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
+        System.out.println("Total Emp Wage = " + totalEmpWage);
     }
 }
