@@ -6,6 +6,7 @@ public class EmployeeWage {
     private final int empRatePerHour;
     private final int numOfWorkingDays;
     private final int maxHoursPerMonth;
+    private int totalEmpWage;
 
     public EmployeeWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
         this.Company = company;
@@ -14,13 +15,6 @@ public class EmployeeWage {
         this.maxHoursPerMonth = maxHoursPerMonth;
     }
 
-    public static void main(String[] args) {
-        EmployeeWage dMart = new EmployeeWage("Dmart", 20,20,100);
-        dMart.company();
-        EmployeeWage reliance = new EmployeeWage("Reliance", 25,25,150);
-        reliance.company();
-
-    }
     public void company() {
 //        Variables
         int empHrs = 0, totalWorkingDays = 0, totalEmpHrs = 0;
@@ -42,7 +36,21 @@ public class EmployeeWage {
             totalEmpHrs += empHrs;
 //            System.out.println("Day: " + totalWorkingDays + " Emp Hrs: " + empHrs);
         }
-        int totalEmpWage = totalEmpHrs * empRatePerHour;
-        System.out.println("Total Emp Wage for " + Company +" = " + totalEmpWage);
+        totalEmpWage = totalEmpHrs * empRatePerHour;
+    }
+
+    @Override
+    public String toString() {
+        return "Total Emp Wage for " + Company + " = " + totalEmpWage;
+    }
+
+    public static void main(String[] args) {
+        EmployeeWage dMart = new EmployeeWage("Dmart", 20, 20, 100);
+        dMart.company();
+        System.out.println(dMart);
+        EmployeeWage reliance = new EmployeeWage("Reliance", 25, 25, 150);
+        reliance.company();
+        System.out.println(reliance);
+
     }
 }
