@@ -1,21 +1,23 @@
+import java.util.ArrayList;
+
 public class EmployeeWage implements IEmployeeWage {
     public static final int IS_PART_TIME = 1;
     public static final int IS_FULL_TIME = 2;
 
     private int numOfCompany = 0;
-    CompanyEmpWage[] companyEmpWageArray = new CompanyEmpWage[5];
+    ArrayList<CompanyEmpWage> companyEmpWageArray = new ArrayList<>();
 
     @Override
     public void addCompanyEmpWage(String Company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
-        companyEmpWageArray[numOfCompany] = new CompanyEmpWage(Company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
+        companyEmpWageArray.add(numOfCompany, new CompanyEmpWage(Company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth));
         numOfCompany++;
     }
 
     @Override
     public void computeEmpWage() {
         for (int i = 0; i < numOfCompany; i++) {
-            companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
-            System.out.println(companyEmpWageArray[i]);
+            companyEmpWageArray.get(i).setTotalEmpWage(this.computeEmpWage(companyEmpWageArray.get(i)));
+            System.out.println(companyEmpWageArray.get(i));
         }
     }
 
