@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EmployeeWage implements IEmployeeWage {
     public static final int IS_PART_TIME = 1;
@@ -6,6 +7,7 @@ public class EmployeeWage implements IEmployeeWage {
 
     private int numOfCompany = 0;
     ArrayList<CompanyEmpWage> companyEmpWageArray = new ArrayList<>();
+    HashMap<String, CompanyEmpWage> map = new HashMap<>();
     ArrayList<Integer> dailyEmpWageArray = new ArrayList<>();
 
     @Override
@@ -20,6 +22,11 @@ public class EmployeeWage implements IEmployeeWage {
             companyEmpWageArray.get(i).setTotalEmpWage(this.computeEmpWage(companyEmpWageArray.get(i)));
             System.out.println(companyEmpWageArray.get(i));
         }
+    }
+
+    @Override
+    public int getTotalWage(String Company) {
+        return map.get(Company).totalEmpWage;
     }
 
     private int computeEmpWage(CompanyEmpWage companyEmpWage) {
@@ -48,9 +55,10 @@ public class EmployeeWage implements IEmployeeWage {
     }
 
     public static void main(String[] args) {
-        EmployeeWage employeeWage = new EmployeeWage();
+        IEmployeeWage employeeWage = new EmployeeWage();
         employeeWage.addCompanyEmpWage("Dmart", 20, 20, 100);
         employeeWage.addCompanyEmpWage("Reliance", 25, 25, 150);
         employeeWage.computeEmpWage();
     }
+
 }
