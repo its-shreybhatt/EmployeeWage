@@ -6,6 +6,7 @@ public class EmployeeWage implements IEmployeeWage {
 
     private int numOfCompany = 0;
     ArrayList<CompanyEmpWage> companyEmpWageArray = new ArrayList<>();
+    ArrayList<Integer> dailyEmpWageArray = new ArrayList<>();
 
     @Override
     public void addCompanyEmpWage(String Company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
@@ -40,6 +41,7 @@ public class EmployeeWage implements IEmployeeWage {
                     empHrs = 0;
             }
             totalEmpHrs += empHrs;
+            dailyEmpWageArray.add(empHrs * companyEmpWage.empRatePerHour);
 //            System.out.println("Day: " + totalWorkingDays + " Emp Hrs: " + empHrs);
         }
         return totalEmpHrs * companyEmpWage.empRatePerHour;
